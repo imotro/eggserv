@@ -1,4 +1,4 @@
-run = "sh sh"
+run = "./start static 8080"
 modules = ["python-3.10:v25-20230920-d4ad2e4"]
 
 [nix]

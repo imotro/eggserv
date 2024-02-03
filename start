@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Read directory and port from JSON file
+JSON_FILE="server_config.json"
+
+# Check if the JSON file exists
+if [ ! -f "$JSON_FILE" ]; then
+  echo "Error: JSON file $JSON_FILE not found"
+  exit 1
+fi
+
+# Parse JSON and extract directory and port
+SERVE_DIR=$(jq -r '.directory // "/path/to/default/directory"' "$JSON_FILE")
+PORT=$(jq -r '.port // 8000' "$JSON_FILE")
+
+# Execute the Python server script with arguments
+python3 server.py "$SERVE_DIR" "$PORT"
